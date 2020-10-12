@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Your Todos | TODO LIST</title>
+    <link rel="icon" href="https://img.icons8.com/cotton/2x/checklist.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Lemon&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+</head>
+
+<body>
+    <style>
+        h1 {
+            font-family: 'Lemon', cursive;
+        }
+        body{
+            background-color: #005c99;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-image: url('https://repository-images.githubusercontent.com/276388704/eb978200-fe82-11ea-9259-ef8e06646d61');
+        }
+        p {
+            font-family: 'Lemon', cursive;
+        }
+        .container{
+            max-width:300px;
+            padding: 15px;
+            border: 1px solid white; 
+            background-color: white;
+            margin: auto; 
+        }
+        a{
+            font-family: 'Lemon', cursive;  
+            color: white;
+        }
+        a.new:hover{
+            color: white;
+            background-image: url('https://repository-images.githubusercontent.com/276388704/eb978200-fe82-11ea-9259-ef8e06646d61');
+        }
+        a.new:active{
+            color: white;
+            background-image: url('https://repository-images.githubusercontent.com/276388704/eb978200-fe82-11ea-9259-ef8e06646d61');
+        }
+    </style>
+    <nav class="navbar navbar-default navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/" style="font-family: 'Lemon', cursive;"><i class="home icon"></i>Home
+                </a>
+                <a class="navbar-brand" href="/todo" style="font-family: 'Lemon', cursive;"><i
+                        class="calendar check icon"></i>Todo
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="true">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav navbar-right mr-auto">
+                    <%if(!currentUser){%>
+                        <li><a href="/login" style="font-family: 'Lemon', cursive;">Login</a></li>
+                        <li>
+                            <a href="/register" style="font-family: 'Lemon', cursive;">Sign Up</a>
+                        </li>
+                    <%}else{%>
+                        <li>
+                            <a href="" style="font-family: 'Lemon', cursive;">Signed in as <%=currentUser.username%></a>
+                        </li>
+                        <li>
+                            <a href="/logout" style="font-family: 'Lemon', cursive;">Logout</a>
+                        </li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+       <h1 align="center">Your Todos</h1><hr>
+       <%for(i = 0; i < todos.length; i++){%>
+        <%if(todos[i].isCompleted){%>
+            <p><%=[i+1]%>) <strike style="color:#a1a1a1;"><em><%=todos[i].title%> - <%=moment(todos[i].created).format('L')%></em></strike><span class="pull-right"><%if(todos[i].isCompleted){%><input disabled type="checkbox" checked name="isCompleted"></span><%}else{%><input type="checkbox" disabled name="isCompleted"></span><%}%></p>
+            <a href="todo/<%=todos[i]._id%>" class="btn btn-primary btn-sm">View More</a>
+        <%}else{%>
+            <p><%=[i+1]%>) <%=todos[i].title%> - <%=moment(todos[i].created).format('L')%><span class="pull-right"><%if(todos[i].isCompleted){%><input disabled type="checkbox" checked name="isCompleted"></span><%}else{%><input disabled type="checkbox" name="isCompleted"></span><%}%></p>
+            <a href="todo/<%=todos[i]._id%>" class="btn btn-primary btn-sm">View More</a>
+        <%}%>
+        <hr>
+       <%}%>
+       <span class="pull-right"><a class="new" href="todo/new" style="background-image: url('https://www.freevector.com/uploads/vector/preview/30342/colorful_bckgrnd-01.jpg'); font-size:25px; border-radius: 50%;"><i class='plus icon'></i></a></span>
+    </div>
+</body>
+
+</html>
