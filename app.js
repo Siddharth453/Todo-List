@@ -1,3 +1,5 @@
+const todo = require('./models/todo');
+
 require('dotenv').config();
 const passportLocalMongoose = require('passport-local-mongoose'),
       methodOverride        = require('method-override'),
@@ -49,12 +51,72 @@ app.get('/todo', isLoggedIn, (req, res) => {
        }
    })
 })
+app.get('/todo/new', isLoggedIn, (req, res) => {
+    res.render('new', {currentUser: req.user});
+})
+app.post('/todo/new', isLoggedIn, (req, res) => {
+    const newTodo = {title: req.body.title, description: req.body.description, dueDate: req.body.duedate, author: req.body.author, isCompleted: false, isUrgent: req.body.isurgent};
+    Todo.create(newTodo, (error, newTask) => {
+        if(error){
+            console.log(error)
+        }else{
+            newTask.author.id = req.user.id;
+			newTask.author.fullname = req.user.fullname;
+            newTask.save();
+            res.redirect('/todo')
+        }
+    })
+})
+app.get('/todo/:id/edit', isLoggedIn, (req, res) => {
+    Todo.findById(req.params.id, (error, editTodo) => {
+        if(error){
+            console.log(error);
+        }else{
+            if(editTodo.author.id == req.user.id){
+                res.render('edit', {currentUser: req.user, todo: editTodo})
+            }else{
+                res.redirect('/todo');
+            }
+        }
+    })
+})
+app.post('/todo/:id/edit', isLoggedIn, (req, res) => {
+    const updateTask = {title: req.body.title, description: req.body.description, dueDate: req.body.duedate, isUrgent: req.body.isurgent};
+    Todo.findByIdAndUpdate(req.params.id, updateTask, (error, updateTodo) => {
+        if(error){
+            console.log(error);
+        }else{
+            if(updateTodo.author.id == req.user.id){
+                res.redirect(`/todo/${req.params.id}`);
+            }else{
+                res.redirect('/todo');
+            }
+        }
+    })
+})
+app.post('/todo/new', isLoggedIn, (req, res) => {
+    const newTodo = {title: req.body.title, description: req.body.description, dueDate: req.body.duedate, author: req.body.author, isCompleted: false, isUrgent: req.body.isurgent};
+    Todo.create(newTodo, (error, newTask) => {
+        if(error){
+            console.log(error)
+        }else{
+            newTask.author.id = req.user.id;
+			newTask.author.fullname = req.user.fullname;
+            newTask.save();
+            res.redirect('/todo')
+        }
+    })
+})
 app.get('/todo/:id', isLoggedIn, (req, res) => {
     Todo.findById(req.params.id, (error, todo) => {
         if(error){
             console.log(error);
         }else{
-            res.render('show', {todo: todo, currentUser: req.user});
+            if(todo.author.id == req.user.id){
+                res.render('show', {todo: todo, currentUser: req.user});
+            }else{
+                res.redirect('/todo')
+            }
         }
     })
  })

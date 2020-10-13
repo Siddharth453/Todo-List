@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Your Todos | TODO LIST</title>
+    <title>New Todo | TODO LIST</title>
     <link rel="icon" href="https://img.icons8.com/cotton/2x/checklist.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
@@ -21,43 +21,45 @@
         h1 {
             font-family: 'Lemon', cursive;
         }
-        body{
+
+        body {
             background-color: #005c99;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-image: url('https://repository-images.githubusercontent.com/276388704/eb978200-fe82-11ea-9259-ef8e06646d61');
         }
+
         p {
             font-family: 'Lemon', cursive;
         }
-        .container{
-            max-width:300px;
+
+        .container {
             padding: 15px;
-            border: 1px solid white; 
+            border: 1px solid white;
             background-color: white;
-            margin: auto; 
+            margin: auto;
         }
-        a{
-            font-family: 'Lemon', cursive;  
-            color: white;
+
+        button {
+            font-family: 'Lemon', cursive;
+            cursor: pointer;
         }
-        a.new{
-            background-image: url('https://www.freevector.com/uploads/vector/preview/30342/colorful_bckgrnd-01.jpg'); 
-            font-size:25px; 
-            border-radius: 5px;
+
+        input {
+            font-family: 'Lemon', cursive;
         }
-        a.new:hover{
-            color: white;
-            background-image: url('https://www.freevector.com/uploads/vector/preview/30342/colorful_bckgrnd-01.jpg');
-            font-size: 27px;
+
+        textarea {
+            font-family: 'Lemon', cursive;
         }
-        a.new:active{
-            color: white;
-            background-image: url('https://www.freevector.com/uploads/vector/preview/30342/colorful_bckgrnd-01.jpg');
+
+        select {
+            font-family: 'Lemon', cursive;
         }
-        .fixed-bottom{
-            margin-bottom: 5px;
+
+        label {
+            font-family: 'Lemon', cursive;
         }
     </style>
     <nav class="navbar navbar-default navbar-expand-md navbar-light bg-light">
@@ -76,40 +78,39 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav navbar-right mr-auto">
                     <%if(!currentUser){%>
-                        <li><a href="/login" style="font-family: 'Lemon', cursive;">Login</a></li>
-                        <li>
-                            <a href="/register" style="font-family: 'Lemon', cursive;">Sign Up</a>
-                        </li>
+                    <li><a href="/login" style="font-family: 'Lemon', cursive;">Login</a></li>
+                    <li>
+                        <a href="/register" style="font-family: 'Lemon', cursive;">Sign Up</a>
+                    </li>
                     <%}else{%>
-                        <li>
-                            <a href="" style="font-family: 'Lemon', cursive;">Signed in as <%=currentUser.username%></a>
-                        </li>
-                        <li>
-                            <a href="/logout" style="font-family: 'Lemon', cursive;">Logout</a>
-                        </li>
+                    <li>
+                        <a href="" style="font-family: 'Lemon', cursive;">Signed in as <%=currentUser.username%></a>
+                    </li>
+                    <li>
+                        <a href="/logout" style="font-family: 'Lemon', cursive;">Logout</a>
+                    </li>
                     <%}%>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
-       <h1 align="center">Your Todos</h1><hr>
-       <%for(i = 0; i < todos.length; i++){%>
-        <%if(todos[i].author.id == currentUser.id){%>
-        <%if(todos[i].isCompleted){%>
-            <p><strike style="color:#a1a1a1;"><em><%=todos[i].title%> - <%=moment(todos[i].created).format('L')%></em></strike><span class="pull-right"><%if(todos[i].isCompleted){%><input disabled type="checkbox" checked name="isCompleted"></span><%}else{%><input type="checkbox" disabled name="isCompleted"></span><%}%></p>
-            <a href="todo/<%=todos[i]._id%>" class="btn btn-primary btn-sm">View More</a><hr>
-        <%}else{%>
-            <p><%=todos[i].title%> - <%=moment(todos[i].created).format('L')%><span class="pull-right"><%if(todos[i].isCompleted){%><input disabled type="checkbox" checked name="isCompleted"></span><%}else{%><input disabled type="checkbox" name="isCompleted"></span><%}%></p>
-            <a href="todo/<%=todos[i]._id%>" class="btn btn-primary btn-sm">View More</a>
-            <hr>
-        <%}%>
-        <%}%>
-       <%}%>
-    </div>
-    <div class="fixed-bottom" align="center">
-        <a class="new btn-lg" href="todo/new"><i class='plus icon'></i> Add new Task</a>
-    </div>
 </body>
-
+<div class="container">
+    <form action="/todo/new" method="POST">
+        <h1>Create new Todo</h1>
+        <hr>
+        <label for="title">Todo Title:</label>
+        <input class="form-control" type="text" name="title" id="title" placeholder="Todo Title.." required><br>
+        <label for="title">Todo Description:</label>
+        <textarea class="form-control" name="description" id="description" placeholder="Todo Description.." required></textarea><br>
+        <label for="title">Todo Due Date:</label>
+        <input class="form-control" type="datetime-local" name="duedate" id="duedate" placeholder="Due Date.."><br>
+        <label for="title">Is Urgent?</label>
+        <select class="form-control" id="isurgent" name="isurgent">
+            <option value="Urgent">Urgent</option>
+            <option value="Not Urgent">Not Urgent</option>
+        </select><br>
+        <button class="btn btn-primary btn-lg">Create Todo</button>
+    </form>
+</div>
 </html>

@@ -77,7 +77,7 @@
 </body>
 <div class="container">
     <h1 align="center"><%=todo.title%></h1><hr>
-    <p align="center"><%=todo.description%></p><hr>
+    <p align="center"><%-todo.description%></p><hr>
     <p>Date Created: <%=moment(todo.created).format('L')%></p>
     <p>Due Date: <%=moment(todo.dueDate).format('L')%></p><hr>
     <%if(todo.isCompleted){%>
