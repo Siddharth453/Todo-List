@@ -16,5 +16,4 @@ const todoSchema = new mongoose.Schema({
     isCompleted: {type: Boolean, default: false},
     isUrgent: String
 });
-
 module.exports = mongoose.model("Todo", todoSchema)
