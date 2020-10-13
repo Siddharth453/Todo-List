@@ -31,7 +31,7 @@
         p {
             font-family: 'Lemon', cursive;
         }
-        .container{
+        .container.todos{
             max-width:300px;
             padding: 15px;
             border: 1px solid white; 
@@ -92,7 +92,21 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    <%if(!success.length == 0){%>
+        <div class="container">
+            <div class="alert alert-success" role="alert">
+                <p><%=success%></p>
+            </div>
+        </div>
+    <%}%>
+    <%if(!error.length == 0){%>
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                <p><%=error%></p>
+            </div>
+        </div>
+    <%}%>
+    <div class="container todos">
        <h1 align="center">Your Todos</h1><hr>
        <%for(i = 0; i < todos.length; i++){%>
         <%if(todos[i].author.id == currentUser.id){%>

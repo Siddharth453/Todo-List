@@ -96,7 +96,7 @@
     </nav>
 </body>
 <div class="container">
-    <form action="/todo/<%=todo._id%>/edit" method="POST">
+    <form action="/todo/<%=todo._id%>/edit?_method=PUT" method="POST">
         <h1>Update Todo <%=todo.title%></h1>
         <hr>
         <label for="title">Todo Title:</label>

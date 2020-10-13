@@ -86,6 +86,13 @@
             </div>
         </div>
     </nav>
+    <%if(!error.length == 0){%>
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                <p><%=error%></p>
+            </div>
+        </div>
+    <%}%>
     <hr>
     <div class="container" align="center">
         <form action="/login" method="POST">
@@ -96,9 +103,23 @@
             <label for="password">Password:</label>
             <input class="form-control" type="password" placeholder="Password.." name="password" id="password"><br>
             <button class="btn btn-primary btn-lg btn-block">Login</button>
+            <input type="checkbox" onclick="toggle()" style="font-family:'Lemon', cursive;">
+            <label>Show Password</label>
+            <hr>
+            <a href="/register" style="font-family:'Lemon', cursive; color: white">Don't Have An Account Yet? Sign Up</a>
         </form>
     </div>
     <hr>
+    <script>
+		function toggle() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+     }
+	</script>
 </body>
 
 </html>

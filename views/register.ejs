@@ -87,6 +87,13 @@
         </div>
     </nav>
     <hr>
+    <%if(!error.length == 0){%>
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                <p><%=error%></p>
+            </div>
+        </div>
+    <%}%>
     <div class="container" align="center">
         <form action="/register" method="POST">
             <h1>Sign Up</h1>
@@ -95,14 +102,26 @@
             <input class="form-control" type="email" autocomplete="off" placeholder="Email.." name="username" id="username"><br>
             <label for="password">Password:</label>
             <input class="form-control" minlength="8" type="password" placeholder="Password.." name="password" id="password"><br>
-            <label for="password">Profile Photo URL:</label>
-            <input class="form-control" type="url" placeholder="Profile Photo URL.." autocomplete="off" name="photo" id="password"><br>
             <label for="password">Fullname:</label>
             <input class="form-control" type="text" placeholder="Fullname.." autocomplete="off" name="fullname" required id="password"><br>
             <button class="btn btn-primary btn-lg btn-block">Sign Up</button>
+            <input type="checkbox" onclick="toggle()" style="font-family:'Lemon', cursive;">
+            <label>Show Password</label>
+            <hr>
+            <a href="/login" style="font-family:'Lemon', cursive; color: white">Already have an account? Login</a>
         </form>
     </div>
     <hr>
+    <script>
+		function toggle() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+     }
+	</script>
 </body>
 
 </html>

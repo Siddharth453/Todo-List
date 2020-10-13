@@ -41,6 +41,12 @@
             font-family: 'Lemon', cursive;
             cursor: pointer;
         }
+        a{
+            font-family: 'Lemon', cursive;
+        }
+        form{
+            display: inline;
+        }
     </style>
     <nav class="navbar navbar-default navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
@@ -93,5 +99,10 @@
     <%}else{%>
         <p><img src="https://www.iconsdb.com/icons/preview/green/flag-xxl.png" width="20px"> <%=todo.isUrgent%></p>
     <%}%>
+    <hr>
+    <a class="btn btn-warning btn-lg" href="/todo/<%=todo._id%>/edit">Edit Task</a>
+    <form action="/todo/<%=todo._id%>/remove?_method=DELETE" method="POST">
+        <button class="btn btn-danger btn-lg">Remove Task</button>
+    </form>
 </div>
 </html>

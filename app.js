@@ -1,5 +1,3 @@
-const todo = require('./models/todo');
-
 require('dotenv').config();
 const passportLocalMongoose = require('passport-local-mongoose'),
       methodOverride        = require('method-override'),
@@ -8,14 +6,13 @@ const passportLocalMongoose = require('passport-local-mongoose'),
       passport              = require('passport'),
       mongoose              = require('mongoose'),
       express               = require('express'),
-      sgMail                = require('@sendgrid/mail'),
       flash                 = require('connect-flash'),
       Todo                  = require('./models/todo'),
       User                  = require('./models/user'),
       app                   = express();
 
 //APP CONFIGRATION
-mongoose.connect('mongodb://localhost:27017/todo-list', {useUnifiedTopology: true, useNewUrlParser: true})
+mongoose.connect(process.env.DATABASE_URL, {useUnifiedTopology: true, useNewUrlParser: true})
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
@@ -47,7 +44,7 @@ app.get('/todo', isLoggedIn, (req, res) => {
        if(error){
            console.log(error);
        }else{
-           res.render('todo', {currentUser: req.user, todos: todos})
+           res.render('todo', {currentUser: req.user, todos: todos, success: req.flash('success'), error: req.flash('noTask')})
        }
    })
 })
@@ -80,7 +77,7 @@ app.get('/todo/:id/edit', isLoggedIn, (req, res) => {
         }
     })
 })
-app.post('/todo/:id/edit', isLoggedIn, (req, res) => {
+app.put('/todo/:id/edit', isLoggedIn, (req, res) => {
     const updateTask = {title: req.body.title, description: req.body.description, dueDate: req.body.duedate, isUrgent: req.body.isurgent};
     Todo.findByIdAndUpdate(req.params.id, updateTask, (error, updateTodo) => {
         if(error){
@@ -88,6 +85,19 @@ app.post('/todo/:id/edit', isLoggedIn, (req, res) => {
         }else{
             if(updateTodo.author.id == req.user.id){
                 res.redirect(`/todo/${req.params.id}`);
+            }else{
+                res.redirect('/todo');
+            }
+        }
+    })
+})
+app.delete('/todo/:id/remove', isLoggedIn, (req, res) => {
+    Todo.findByIdAndRemove(req.params.id, (error, removeTodo) => {
+        if(error){
+            console.log(error);
+        }else{
+            if(removeTodo.author.id == req.user.id){
+                res.redirect('/todo');
             }else{
                 res.redirect('/todo');
             }
@@ -110,7 +120,8 @@ app.post('/todo/new', isLoggedIn, (req, res) => {
 app.get('/todo/:id', isLoggedIn, (req, res) => {
     Todo.findById(req.params.id, (error, todo) => {
         if(error){
-            console.log(error);
+            req.flash('noTask', 'No Todo Found with this ID!');
+            res.redirect('/todo');
         }else{
             if(todo.author.id == req.user.id){
                 res.render('show', {todo: todo, currentUser: req.user});
@@ -145,31 +156,32 @@ app.get('/todo/:id', isLoggedIn, (req, res) => {
 // AUTH ROUTES
 // show register form
 app.get("/register", function(req, res){
-	res.render("register",{currentUser: req.user});
+	res.render("register",{currentUser: req.user, error: req.flash('errorinsignup')});
 });
 //handle sign up logic
 app.post("/register", function(req, res){
-   var newUser = new User({username: req.body.username.toLowerCase(), photo: req.body.photo, fullname: req.body.fullname});
+   var newUser = new User({username: req.body.username.toLowerCase(), fullname: req.body.fullname});
    User.register(newUser, req.body.password, function(err, user){
 	  if(err){
-        //   req.flash("errorinsignup", err.message)
+          req.flash("errorinsignup", err.message)
         console.log(err);
 		  res.redirect("/register");
 	  } 
 	  passport.authenticate("local")(req, res, function(){
-		//  req.flash("success", "Nice To Meet You " + req.user.username + ", You Have Successfully Signed up!");
+		 req.flash("success", "Nice To Meet You " + req.user.fullname + ", You Have Successfully Signed up!");
 		 res.redirect("/todo") 
 	  });
    });
 });
 // show login form
 app.get("/login", function(req, res){
-	res.render("login", {currentUser: req.user})
+	res.render("login", {currentUser: req.user, error: req.flash('error')})
 });
 //handling login logic
 app.post("/login", passport.authenticate("local",
 {
-	successRedirect: "/todo",
+    successRedirect: "/todo",
+    failureFlash: 'Incorrect Username or Password',
 	failureRedirect: "/login"
 }), function(req, res){
 });
@@ -182,34 +194,9 @@ function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){
 		return next();
 	}
-	// req.flash("error", "You Need To Be Logged In First!!");
+	req.flash("error", "You Need To Be Logged In First!!");
 	res.redirect("/login");
 }
-// function checkTodoOwnership(req, res, next){
-// 	//is user logged In?
-// 	if(req.isAuthenticated()){
-// 	   Todo.findById(req.params.id, function(err, updatePost){
-// 	    if(err){
-// 			res.redirect("back");
-// 		}
-// 		  else{
-// 		   //does the user own the post? 
-// 			if(updatePost.author.id.equals(req.user._id)){
-// 			     next();
-// 			}
-// 		   //otherwise, redirect
-// 		   else{
-// 			    // req.flash("error2", "You Do Not Have Permission to do That!!");
-// 	            res.redirect("/posts/" + req.params.id);		   
-// 		   }
-// 	    }
-// 	});
-// 	//if not, redirect
-// 	}else{
-// 	//    req.flash("error1", "You Need To Be Logged In First!!");
-//        res.redirect("/posts/" + req.params.id)
-// 	}
-// };
 
 const port = process.env.PORT || 4003;
 app.listen(port, process.env.IP, () => {
