@@ -8,10 +8,10 @@
 <li>Nobody except you can edit or remove your task.</li>
 <h2>📖Guides:</h2>
 <li>Register your self on <a href="https://todo-list9.herokuapp.com/register">https://todo-list9.herokuapp.com/register</a>.</li>
-<li>Click Create task button at the bottm of your screen to create a task.</li>
+<li>Click Create task button at the bottom of your screen to create a task.</li>
 <li>Click on the View More button on bottom of each task to see more information of that task.</li>
-<li>On the More Information page of a task click complete button(if incomplete task) to complete the task.</li>
-<li>On the More Information page of a task click incomplete button(if complete task) to make the task incomplete.</li>
+<li>On the More Information page of a task click complete button(if the task is incomplete) to complete the task.</li>
+<li>On the More Information page of a task click incomplete button(if the task is completed) to make the task incomplete.</li>
 <li>On the More Information page of a task click Edit Task to edit a task.</li>
 <li>On the More Information page of a task click Remove Task to remove a task.</li>
 <h2>📈Status:</h2>
