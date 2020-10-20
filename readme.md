@@ -1,5 +1,5 @@
 <h1>Yay, Todo List!</h1>
-<p>This is our all new TODO LIST APP which is a pre-release and will be released on 20/10/2020!</p>
+<p>This is our all new TODO LIST APP which is released on 20/10/2020!</p>
 <p>The URL for this Application in <a href="https://todo-list9.herokuapp.com/">https://todo-list9.herokuapp.com/</a>, and Sign Up on <a href="https://todo-list9.herokuapp.com/register">https://todo-list9.herokuapp.com/register</a></p>
 <h2>🎁Features:</h2>
 <li>You should be Authorized and Authenticated.</li>
@@ -15,7 +15,7 @@
 <li>On the More Information page of a task click Edit Task to edit a task.</li>
 <li>On the More Information page of a task click Remove Task to remove a task.</li>
 <h2>📈Status:</h2>
-<p>Not Published, will be published on 20/10/2020</p>
+<p>Published, Working👍</p>
 <hr>
 <p>Thanks</p>
 <p>Siddharth Kumar</p>
