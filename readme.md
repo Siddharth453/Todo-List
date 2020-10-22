@@ -19,4 +19,4 @@
 <hr>
 <p>Thanks</p>
 <p>Siddharth Kumar</p>
-<p align="right">Version 1.0.0(Latest)</p>
+<p align="right">Version 1.0.1(Latest)</p>
