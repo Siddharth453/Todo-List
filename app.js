@@ -16,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(flash());
+app.use(express.static('assets'));
 app.locals.moment = require('moment');
 //PASSPORT CONFIGRATION
 app.use(
@@ -215,6 +216,10 @@ app.post(
 app.get('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/');
+});
+// 404
+app.get('*', (req, res) => {
+	res.render('404', { currentUser: req.user });
 });
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
