@@ -8,7 +8,7 @@ This is a new release of our Todo List Application in command line Version!
    * You can Read a specific Todo.
    * Available for <img width="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/732px-Apple_logo_grey.svg.png"> Mac and <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" width="20px"> Windows.
 ## 📖 Guides:
-   * First Clone this repository from the Command Line by Typing `git clone https://github.com/Siddharth453/Todo-List.git`.
+   * First Clone this repository from the Command Line by Typing `git clone https://github.com/Siddharth453/Todo-List.git` or download it from <a href="https://cmd-todo-list9.herokuapp.com">https://cmd-todo-list9.herokuapp.com</a>.
    * Then from the command line type `cd Todo-List/Todo-CMD`.
    * Then run `npm install`
    * And you have finished the setup part of the application!
