@@ -1,8 +1,1 @@
-[
-	{
-		"title": "Demo",
-		"description": "This is a Demo Test Todo, type 'node app.js --help', for more information",
-		"due": "no due",
-		"urgent": "true"
-	}
-]
+[{"title":"Demo","description":"This is a Demo Test Todo, type 'node app.js --help', for more information","due":"no due","urgent":"true"}]
