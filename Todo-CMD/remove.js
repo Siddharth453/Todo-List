@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const yargs = require('yargs');
 const fs = require('fs');
-const notes = require('./command/todos.js');
+const notes = require('./todos.js');
 yargs.version('1.0.0');
 
 yargs.command({

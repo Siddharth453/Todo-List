@@ -1,5 +1,5 @@
 const yargs = require('yargs');
-const notes = require('./command/todos.js');
+const notes = require('./todos.js');
 
 yargs.command({
 	command: 'r',
