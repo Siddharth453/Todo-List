@@ -12,7 +12,6 @@ This is a new release of our Todo List Application in command line Version!
    * Then from the command line type `cd Todo-List/Todo-CMD`.
    * Then run `npm install`
    * And you have finished the setup part of the application!
-   * Type `node app.js --help` for more information of the commands.
    * Type `node create.js a --title="<Your Title>" --description="<Your Description>" --due="<Your Due Date> --urgent="<Type true or false>"` to create a todo.
    * Type `node remove.js r --title="<Type the title of the todo which you want to delete>"` to remove a todo.
    * Type `node list.js l` to List all the Todos you have.
