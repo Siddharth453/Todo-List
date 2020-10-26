@@ -5,6 +5,7 @@
 <li>You should be Authorized and Authenticated.</li>
 <li>You can create a task and save it securely.</li>
 <li>You can edit or remove your task whenever you want.</li>
+<li>You can add the task to Google Calendar.</li>
 <li>Nobody except you can edit or remove your task.</li>
 <h2>📖Guides:</h2>
 <li>Register your self on <a href="https://todo-list9.herokuapp.com/register">https://todo-list9.herokuapp.com/register</a>.</li>
@@ -13,6 +14,7 @@
 <li>On the More Information page of a task click complete button(if the task is incomplete) to complete the task.</li>
 <li>On the More Information page of a task click incomplete button(if the task is completed) to make the task incomplete.</li>
 <li>On the More Information page of a task click Edit Task to edit a task.</li>
+<li>On the More Information page of a task click Add Task to Google Calendar to add the task to Google Calendar.</li>
 <li>On the More Information page of a task click Remove Task to remove a task.</li>
 <h2>📈Status:</h2>
 <p>Published, Working👍</p>
