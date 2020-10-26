@@ -131,7 +131,7 @@
         <p><img src="https://cdn1.iconfinder.com/data/icons/flatastic-9/256/flag_green-128.png" width="20px"> <%=todo.isUrgent%></p>
     <%}%>
     <hr>
-    <a target="_blank" class="calendar" href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= todo.title %> &details=<%= todo.description %> &location=https://todo-list9.herokuapp.com&dates=<%= moment(todo.dueDate).format('YYYY') %><%= moment(todo.dueDate).format('MM') %><%= moment(todo.dueDate).format('DD') %> "><i class="calendar alternate outline icon"></i> Add Todo to Google Calendar</a>
+    <a target="_blank" class="calendar" href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= todo.title %> &details=<%= todo.description %> &location=https://todo-list9.herokuapp.com&dates=<%= moment(todo.dueDate).format('YYYY') %><%= moment(todo.dueDate).format('MM') %><%= moment(todo.dueDate).format('DD') %> "><i class="calendar alternate outline icon"></i> Add Task to Google Calendar</a>
     <hr>
     <a class="btn btn-warning btn-lg" href="/todo/<%=todo._id%>/edit">Edit Task</a>
     <form action="/todo/<%=todo._id%>/remove?_method=DELETE" method="POST">
