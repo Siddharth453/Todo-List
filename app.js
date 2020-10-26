@@ -189,7 +189,6 @@ app.post('/register', function(req, res) {
 	User.register(newUser, req.body.password, function(err, user) {
 		if (err) {
 			req.flash('errorinsignup', err.message);
-			console.log(err);
 			res.redirect('/register');
 		}
 		passport.authenticate('local')(req, res, function() {
@@ -207,7 +206,7 @@ app.post(
 	'/login',
 	passport.authenticate('local', {
 		successRedirect: '/todo',
-		failureFlash: 'Incorrect Username or Password',
+		failureFlash: 'Incorrect Username or Password!',
 		failureRedirect: '/login'
 	}),
 	function(req, res) {}
