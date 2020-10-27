@@ -1,6 +1,6 @@
 <h1>Yay, Todo List!</h1>
 <p>This is our all new TODO LIST APP which is released on 20/10/2020!</p>
-<p>The URL for this Application in <a href="https://todo-list9.herokuapp.com/">https://todo-list9.herokuapp.com/</a>, and Sign Up on <a href="https://todo-list9.herokuapp.com/register">https://todo-list9.herokuapp.com/register</a></p>
+<p>The URL for this Application is <a href="https://todo-list9.herokuapp.com/">https://todo-list9.herokuapp.com/</a>, and Sign Up on <a href="https://todo-list9.herokuapp.com/register">https://todo-list9.herokuapp.com/register</a></p>
 <h2>🎁Features:</h2>
 <li>You should be Authorized and Authenticated.</li>
 <li>You can create a task and save it securely.</li>
