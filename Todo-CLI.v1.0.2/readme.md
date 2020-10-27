@@ -1,5 +1,5 @@
-# Todo List App Command Line Version is Here!
-This is a new release of our Todo List Application in command line Version!
+# Todo List App Command Line Version 1.0.2 is Here!
+This is a new release of our Todo List Application in command line Version 1.0.2!
 
 ## 🎁 Features:
    * You can Create a Todo.
