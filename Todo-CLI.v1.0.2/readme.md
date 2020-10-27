@@ -14,6 +14,7 @@ This is a new release of our Todo List Application in command line Version 1.0.2
    * First Clone this repository from the Command Line by Typing `git clone https://github.com/Siddharth453/Todo-List.git` or go to <a href="https://cmd-todo-list9.herokuapp.com/download/v1.0.2">https://cmd-todo-list9.herokuapp.com/download/v1.0.2</a>.
    * Then from the command line type `cd Todo-List/Todo-CLI.v1.0.2`.
    * Then run `npm install`
+   * then run `/Users/<your user>/mongodb/bin/mongod.exe --dbpath=/Users/<your user>/mongodb-data` to start the mognodb local server.
    * And you have finished the setup part of the application!
    * Type `node app.js --help` for more information of the commands.
    * Type `node app.js create --title="<Your Title>" --description="<Your Description>" --due="<Your Due Date>" --urgent="<Type true or false>"` to create a todo.
