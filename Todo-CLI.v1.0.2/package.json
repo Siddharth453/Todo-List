@@ -1,0 +1,19 @@
+{
+	"name": "todo-cmd",
+	"version": "1.0.2",
+	"description": "The new version of the Todo List Application(1.0.2)",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"mongod": "/Users/Siddh/mongodb/bin/mongod.exe --dbpath=/Users/Siddh/mongodb-data"
+	},
+	"author": "Siddharth Kumar",
+	"license": "ISC",
+	"dependencies": {
+		"chalk": "^4.1.0",
+		"dotenv": "^8.2.0",
+		"moment": "^2.29.1",
+		"mongoose": "^5.10.10",
+		"yargs": "^16.1.0"
+	}
+}
